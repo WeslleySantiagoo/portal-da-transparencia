@@ -1,7 +1,8 @@
 import { useAuth } from '../contexts/AuthContext';
 
 export const DebugUserInfo = () => {
-  
+  if (import.meta.env.MODE !== 'development') return null;
+
   
   const { user, supabaseUser, loading } = useAuth();
   return (

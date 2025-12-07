@@ -9,7 +9,7 @@ import { transactionQueries } from '../lib/supabase-queries';
 import type { DashboardFilters, Transaction } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 
-export const PublicDashboard = async () => {
+export const PublicDashboard = () => {
   const { hasRole } = useAuth();
   const [filters, setFilters] = useState<DashboardFilters>({
     tipo: 'TODOS',

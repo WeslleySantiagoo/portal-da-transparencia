@@ -49,27 +49,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       console.log('🔍 Fetching user profile from users table for ID:', userId);
       
-      // Primeiro, buscar o email do usuário autenticado
-      const { data: { user: authUser } } = await supabase.auth.getUser();
-      
-      if (!authUser?.email) {
-        console.error('❌ No email found for authenticated user');
-        setLoading(false);
-        return;
-      }
-
-      console.log('📧 User email from auth:', authUser.email);
-      
-      // Buscar APENAS a role usando SELECT role FROM users WHERE email = ?
-      console.log('🔎 Executing: SELECT role FROM users WHERE email =', authUser.email);
-      const { data: roleData, error: roleError } = await supabase
+      // Buscar usuário usando ID (funciona com RLS)
+      console.log('🔎 Executing: SELECT * FROM users WHERE id =', userId);
+      const { data: userData, error: userError } = await supabase
         .from('users')
-        .select('role')
-        .eq('email', authUser.email)
+        .select('*')
+        .eq('id', userId)
         .single();
 
-      if (roleError || !roleData) {
-        console.error('❌ Error fetching role from users table:', roleError);
+      if (userError || !userData) {
+        console.error('❌ Error fetching user from users table:', userError);
+        
+        // Buscar o email do usuário autenticado
+        const { data: { user: authUser } } = await supabase.auth.getUser();
+        
+        if (!authUser?.email) {
+          console.error('❌ No email found for authenticated user');
+          setLoading(false);
+          return;
+        }
+        
         console.log('⚠️ User not found in users table. Will create with role PUBLICO');
         
         // Criar usuário na tabela users com role padrão
@@ -93,43 +92,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         
         setUser(newUser);
       } else {
-        // Sucesso ao buscar a role
-        console.log('✅ Role fetched from users table via SELECT:', roleData.role);
+        // Sucesso ao buscar os dados do usuário
+        console.log('✅ User data fetched from users table:', userData);
         
-        // Agora buscar os dados completos do usuário
-        const { data: userData, error: userError } = await supabase
-          .from('users')
-          .select('id, email, created_at')
-          .eq('email', authUser.email)
-          .single();
+        const userFromDb: User = {
+          id: userData.id,
+          email: userData.email,
+          role: userData.role as UserRole,
+          created_at: userData.created_at
+        };
         
-        if (userError || !userData) {
-          console.error('❌ Error fetching full user data:', userError);
-          // Fallback com dados do auth
-          const fallbackUser: User = {
-            id: authUser.id,
-            email: authUser.email,
-            role: roleData.role as UserRole,
-            created_at: new Date().toISOString(),
-          };
-          setUser(fallbackUser);
-        } else {
-          // Montar o usuário completo com a role da query SELECT
-          const userFromDb: User = {
-            id: userData.id,
-            email: userData.email,
-            role: roleData.role as UserRole, // Role vem do SELECT role FROM users
-            created_at: userData.created_at
-          };
-          
-          console.log('✅ User profile complete with role from SELECT query:', {
-            email: userFromDb.email,
-            role: userFromDb.role,
-            source: 'SELECT role FROM users WHERE email'
-          });
-          
-          setUser(userFromDb);
-        }
+        console.log('✅ User profile complete:', {
+          email: userFromDb.email,
+          role: userFromDb.role,
+          source: 'SELECT * FROM users WHERE id'
+        });
+        
+        setUser(userFromDb);
       }
     } catch (error) {
       console.error('💥 Unexpected error in fetchUserProfile:', error);

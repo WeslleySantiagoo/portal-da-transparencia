@@ -42,7 +42,7 @@ export const Header = () => {
               <span>Dashboard Público</span>
             </Link>
 
-            {user && user.role !== 'PUBLICO' && (
+            {user && user.email !== 'PUBLICO' && (
               <Link 
                 to="/dashboard/privado" 
                 className="flex items-center space-x-1 hover:text-[#d8ea32] transition"

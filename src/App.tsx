@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Header } from './components/Header';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { DebugUserInfo } from './components/DebugUserInfo';
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { PublicDashboard } from './pages/PublicDashboard';
@@ -56,7 +55,7 @@ function App() {
       <Router>
         <div className="min-h-screen bg-[#fbfafc]">
           <AppRoutes />
-          <DebugUserInfo />
+          {/* <DebugUserInfo /> */}
         </div>
       </Router>
     </AuthProvider>
