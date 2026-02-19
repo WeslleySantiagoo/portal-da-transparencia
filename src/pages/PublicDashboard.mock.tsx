@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
-import { mockTransactions, mockStats } from '../lib/mockData';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, TrendingUp, TrendingDown, DollarSign } from "lucide-react";
+import { mockTransactions, mockStats } from "../lib/mockData";
 
 export const PublicDashboard = () => {
   const [showTable, setShowTable] = useState(false);
 
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     }).format(value);
   };
 
@@ -32,8 +32,12 @@ export const PublicDashboard = () => {
           {/* Page Title */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-4xl font-bold text-[#063472] mb-2">Dashboard Público</h1>
-              <p className="text-gray-600">Acompanhe a transparência financeira em tempo real</p>
+              <h1 className="text-4xl font-bold text-[#063472] mb-2">
+                Dashboard Público
+              </h1>
+              <p className="text-gray-600">
+                Acompanhe a transparência financeira em tempo real
+              </p>
             </div>
             <Link
               to="/"
@@ -50,7 +54,9 @@ export const PublicDashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-600 text-sm">Total Entradas</p>
-                  <p className="text-2xl font-bold text-[#063472]">{formatCurrency(mockStats.totalEntradas)}</p>
+                  <p className="text-2xl font-bold text-[#063472]">
+                    {formatCurrency(mockStats.totalEntradas)}
+                  </p>
                 </div>
                 <TrendingUp size={32} className="text-green-500" />
               </div>
@@ -60,7 +66,9 @@ export const PublicDashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-600 text-sm">Total Saídas</p>
-                  <p className="text-2xl font-bold text-[#063472]">{formatCurrency(mockStats.totalSaidas)}</p>
+                  <p className="text-2xl font-bold text-[#063472]">
+                    {formatCurrency(mockStats.totalSaidas)}
+                  </p>
                 </div>
                 <TrendingDown size={32} className="text-red-500" />
               </div>
@@ -70,7 +78,9 @@ export const PublicDashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-600 text-sm">Saldo</p>
-                  <p className="text-2xl font-bold text-green-600">{formatCurrency(mockStats.saldo)}</p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {formatCurrency(mockStats.saldo)}
+                  </p>
                 </div>
                 <DollarSign size={32} className="text-[#aebd24]" />
               </div>
@@ -80,7 +90,9 @@ export const PublicDashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-600 text-sm">Transações</p>
-                  <p className="text-2xl font-bold text-[#063472]">{mockStats.transacoes}</p>
+                  <p className="text-2xl font-bold text-[#063472]">
+                    {mockStats.transacoes}
+                  </p>
                 </div>
                 <div className="text-4xl text-blue-500" />
               </div>
@@ -90,12 +102,14 @@ export const PublicDashboard = () => {
           {/* Transactions Table */}
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#063472]">Transações Recentes</h2>
+              <h2 className="text-2xl font-bold text-[#063472]">
+                Transações Recentes
+              </h2>
               <button
                 onClick={() => setShowTable(!showTable)}
                 className="bg-[#0162b3] hover:bg-[#063472] text-white px-4 py-2 rounded transition"
               >
-                {showTable ? 'Ocultar' : 'Ver'} Tabela
+                {showTable ? "Ocultar" : "Ver"} Tabela
               </button>
             </div>
 
@@ -104,32 +118,57 @@ export const PublicDashboard = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 font-semibold text-gray-700">Data</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-700">Tipo</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-700">Categoria</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-700">Descrição</th>
-                      <th className="text-right py-3 px-4 font-semibold text-gray-700">Valor</th>
+                      <th className="text-left py-3 px-4 font-semibold text-gray-700">
+                        Data
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-gray-700">
+                        Tipo
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-gray-700">
+                        Categoria
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-gray-700">
+                        Descrição
+                      </th>
+                      <th className="text-right py-3 px-4 font-semibold text-gray-700">
+                        Valor
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {mockTransactions.map((tx) => (
-                      <tr key={tx.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <tr
+                        key={tx.id}
+                        className="border-b border-gray-100 hover:bg-gray-50"
+                      >
                         <td className="py-3 px-4">
-                          {new Date(tx.date).toLocaleDateString('pt-BR')}
+                          {new Date(tx.date).toLocaleDateString("pt-BR")}
                         </td>
                         <td className="py-3 px-4">
-                          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            tx.type === 'ENTRADA' 
-                              ? 'bg-green-100 text-green-700' 
-                              : 'bg-red-100 text-red-700'
-                          }`}>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium ${
+                              tx.type === "ENTRADA"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700"
+                            }`}
+                          >
                             {tx.type}
                           </span>
                         </td>
-                        <td className="py-3 px-4 text-gray-600">{tx.category}</td>
-                        <td className="py-3 px-4 text-gray-600">{tx.description}</td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {tx.category}
+                        </td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {tx.description}
+                        </td>
                         <td className="py-3 px-4 text-right font-semibold">
-                          <span className={tx.type === 'ENTRADA' ? 'text-green-600' : 'text-red-600'}>
+                          <span
+                            className={
+                              tx.type === "ENTRADA"
+                                ? "text-green-600"
+                                : "text-red-600"
+                            }
+                          >
                             {formatCurrency(tx.amount)}
                           </span>
                         </td>
@@ -145,7 +184,8 @@ export const PublicDashboard = () => {
           <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
             <h3 className="font-bold text-blue-900 mb-2">📌 Modo Demo</h3>
             <p className="text-blue-800">
-              Esta é uma versão de demonstração com dados mockados. Em produção, esses dados viriam do banco de dados Supabase.
+              Esta é uma versão de demonstração com dados mockados. Em produção,
+              esses dados viriam do banco de dados Supabase.
             </p>
           </div>
         </div>

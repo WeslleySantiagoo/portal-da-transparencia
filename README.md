@@ -19,7 +19,18 @@ O projeto utiliza a paleta de cores oficial da Seed a Bit:
 
 ## 🚀 Funcionalidades
 
-### 📊 Dashboard Público
+### � Preview do Projeto
+
+#### Página Inicial (Landing Page)
+![Página Inicial](./docs/screenshots/landing-page.png)
+
+#### Dashboard Público
+![Dashboard Público](./docs/screenshots/public-dashboard.png)
+
+#### Página de Login
+![Página de Login](./docs/screenshots/login-page.png)
+
+### �📊 Dashboard Público
 - ✅ Visualização de todas as transações (entradas e despesas)
 - ✅ Filtros por tipo, categoria, período, mês e ano
 - ✅ Gráficos de pizza (entradas e despesas por categoria)
@@ -277,5 +288,7 @@ Para contribuir com o projeto:
 5. Abra um Pull Request
 
 ---
+
+
 
 Desenvolvido com ❤️ para a **Seed a Bit**

@@ -1,8 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { LandingPage } from './pages/LandingPage';
-import { LoginPage } from './pages/LoginPage.mock';
-import { PublicDashboard } from './pages/PublicDashboard.mock';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { LandingPage } from "./pages/LandingPage";
+import { LoginPage } from "./pages/LoginPage.mock";
+import { PublicDashboard } from "./pages/PublicDashboard.mock";
+import "./App.css";
 
 function App() {
   return (

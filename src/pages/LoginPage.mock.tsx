@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { LogIn } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { LogIn } from "lucide-react";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     // Simular login com qualquer credencial
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if (email && password) {
-      navigate('/dashboard', { replace: true });
+      navigate("/dashboard", { replace: true });
     } else {
-      setError('Por favor, preencha email e senha');
+      setError("Por favor, preencha email e senha");
       setLoading(false);
     }
   };
@@ -76,13 +76,13 @@ export const LoginPage = () => {
             className="w-full bg-[#0162b3] hover:bg-[#063472] text-white py-3 rounded-lg font-medium transition disabled:opacity-50 flex items-center justify-center space-x-2"
           >
             <LogIn size={20} />
-            <span>{loading ? 'Entrando...' : 'Entrar'}</span>
+            <span>{loading ? "Entrando..." : "Entrar"}</span>
           </button>
         </form>
 
         <div className="mt-6 text-center">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="text-[#0162b3] hover:text-[#063472] transition"
           >
             ← Voltar para a página inicial
