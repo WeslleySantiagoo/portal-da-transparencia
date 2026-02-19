@@ -22,21 +22,24 @@ O projeto utiliza a paleta de cores oficial da Seed a Bit:
 
 ## 🚀 Funcionalidades
 
-### � Preview do Projeto
+### Preview do Projeto
 
 #### Página Inicial (Landing Page)
 
-![Página Inicial](./docs/screenshots/landing-page.png)
+<img width="1920" height="925" alt="image" src="https://github.com/user-attachments/assets/e6ad7f6c-9f62-44a8-b915-87bb567b37d8" />
+
 
 #### Dashboard Público
 
-![Dashboard Público](./docs/screenshots/public-dashboard.png)
+<img width="1918" height="924" alt="image" src="https://github.com/user-attachments/assets/c85c13f0-0de8-44cd-bb89-ae74fb89ccd5" />
+
 
 #### Página de Login
 
-![Página de Login](./docs/screenshots/login-page.png)
+<img width="1917" height="924" alt="image" src="https://github.com/user-attachments/assets/4fb2d29e-06e1-44c9-9d08-46dfd59fa934" />
 
-### �📊 Dashboard Público
+
+### 📊 Dashboard Público
 
 - ✅ Visualização de todas as transações (entradas e despesas)
 - ✅ Filtros por tipo, categoria, período, mês e ano
