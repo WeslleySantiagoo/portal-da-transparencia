@@ -7,14 +7,17 @@ Portal de transparência financeira desenvolvido para a empresa júnior **Seed a
 O projeto utiliza a paleta de cores oficial da Seed a Bit:
 
 ### Principal
+
 - Azul Marinho: `#063472`
 - Azul: `#0162b3`
 
 ### Secundária
+
 - Verde Escuro: `#aebd24`
 - Verde Limão: `#d8ea32`
 
 ### Auxiliar
+
 - Branco Gelo: `#fbfafc`
 
 ## 🚀 Funcionalidades
@@ -22,15 +25,19 @@ O projeto utiliza a paleta de cores oficial da Seed a Bit:
 ### � Preview do Projeto
 
 #### Página Inicial (Landing Page)
+
 ![Página Inicial](./docs/screenshots/landing-page.png)
 
 #### Dashboard Público
+
 ![Dashboard Público](./docs/screenshots/public-dashboard.png)
 
 #### Página de Login
+
 ![Página de Login](./docs/screenshots/login-page.png)
 
 ### �📊 Dashboard Público
+
 - ✅ Visualização de todas as transações (entradas e despesas)
 - ✅ Filtros por tipo, categoria, período, mês e ano
 - ✅ Gráficos de pizza (entradas e despesas por categoria)
@@ -39,7 +46,9 @@ O projeto utiliza a paleta de cores oficial da Seed a Bit:
 - ✅ Resumo financeiro do período filtrado
 
 ### 🔒 Dashboard Privado (ADMIN/OPERAÇÕES)
+
 Além de tudo do dashboard público:
+
 - ✅ Saldo atual da conta
 - ✅ Reserva de emergência
 - ✅ Totais por operações, projetos e negócios
@@ -47,6 +56,7 @@ Além de tudo do dashboard público:
 - ✅ Acesso completo a todos os dados
 
 ### 👥 Sistema de Autenticação
+
 - ✅ Login com email e senha
 - ✅ 3 níveis de acesso:
   - **PUBLICO**: acesso apenas ao dashboard público
@@ -54,6 +64,7 @@ Além de tudo do dashboard público:
   - **ADMIN**: acesso total + pode deletar transações e gerenciar usuários
 
 ### 📝 Gerenciamento de Transações
+
 - ✅ Formulário para adicionar transações (ADMIN/OPERAÇÕES)
 - ✅ Campos: Data, Tipo, Valor, Descrição, Categoria, Beneficiário
 - ✅ Categorias de Entrada: Concepção Digital, Desenvolvimento, E-Commerce, etc.
@@ -73,12 +84,14 @@ Além de tudo do dashboard público:
 ## 📦 Instalação
 
 ### 1. Clone o repositório
+
 ```bash
 git clone <seu-repositorio>
 cd portal-da-transparencia
 ```
 
 ### 2. Instale as dependências
+
 ```bash
 npm install
 ```
@@ -86,18 +99,21 @@ npm install
 ### 3. Configure o Supabase
 
 #### 3.1. Crie um projeto no Supabase
+
 1. Acesse [supabase.com](https://supabase.com)
 2. Crie uma nova conta ou faça login
 3. Clique em "New Project"
 4. Preencha os dados do projeto
 
 #### 3.2. Execute o script SQL
+
 1. No painel do Supabase, vá em **SQL Editor**
 2. Abra o arquivo `supabase-setup.sql` deste projeto
 3. Copie todo o conteúdo e cole no SQL Editor
 4. Clique em **Run** para executar
 
 Este script irá criar:
+
 - ✅ Tabelas `users` e `transacoes`
 - ✅ Políticas de segurança (RLS)
 - ✅ Views para resumos financeiros
@@ -105,33 +121,40 @@ Este script irá criar:
 - ✅ Triggers para automação
 
 #### 3.3. Configure as variáveis de ambiente
+
 1. Preencha o arquivo `.env` com suas credenciais do Supabase:
+
 ```env
 VITE_SUPABASE_URL=https://seu-projeto.supabase.co
 VITE_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
 ```
 
 Para encontrar essas informações:
+
 - Vá em **Settings** > **API** no painel do Supabase
 - Copie o **Project URL** e a **anon public** key
 
 ### 4. Crie o primeiro usuário
 
 #### 4.1. Crie via painel do Supabase
+
 1. Vá em **Authentication** > **Users**
 2. Clique em **Add user** > **Create new user**
 3. Preencha email e senha
 4. Copie o UUID do usuário criado
 
 #### 4.2. Configure a role do usuário
+
 No **SQL Editor**, execute:
+
 ```sql
-UPDATE users 
-SET role = 'ADMIN' 
+UPDATE users
+SET role = 'ADMIN'
 WHERE email = 'seu@email.com';
 ```
 
 ### 5. Execute o projeto
+
 ```bash
 npm run dev
 ```
@@ -168,15 +191,16 @@ src/
 
 ## 🔐 Roles e Permissões
 
-| Role | Dashboard Público | Dashboard Privado | Adicionar Transação | Editar Transação | Deletar Transação |
-|------|-------------------|-------------------|---------------------|------------------|-------------------|
-| **PUBLICO** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **OPERACOES** | ✅ | ✅ | ✅ | ✅ | ❌ |
-| **ADMIN** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Role          | Dashboard Público | Dashboard Privado | Adicionar Transação | Editar Transação | Deletar Transação |
+| ------------- | ----------------- | ----------------- | ------------------- | ---------------- | ----------------- |
+| **PUBLICO**   | ✅                | ❌                | ❌                  | ❌               | ❌                |
+| **OPERACOES** | ✅                | ✅                | ✅                  | ✅               | ❌                |
+| **ADMIN**     | ✅                | ✅                | ✅                  | ✅               | ✅                |
 
 ## 📊 Estrutura do Banco de Dados
 
 ### Tabela: users
+
 ```sql
 id (UUID)           - ID do usuário (referência auth.users)
 email (TEXT)        - Email do usuário
@@ -185,6 +209,7 @@ created_at (TIMESTAMP) - Data de criação
 ```
 
 ### Tabela: transacoes
+
 ```sql
 id (UUID)           - ID da transação
 data (DATE)         - Data da transação
@@ -200,6 +225,7 @@ created_at (TIMESTAMP) - Data de criação
 ## 🎯 Categorias
 
 ### Entradas
+
 - Concepção Digital
 - Desenvolvimento
 - E-Commerce
@@ -210,6 +236,7 @@ created_at (TIMESTAMP) - Data de criação
 - Outro
 
 ### Despesas
+
 - Imposto
 - Serviço
 - Evento
@@ -222,22 +249,27 @@ created_at (TIMESTAMP) - Data de criação
 ## 🚀 Deploy
 
 ### Vercel (Recomendado)
+
 ```bash
 npm run build
 vercel --prod
 ```
 
 ### Netlify
+
 ```bash
 npm run build
 netlify deploy --prod
 ```
 
 ### Outras plataformas
+
 O projeto é uma SPA (Single Page Application) React. Basta fazer o build e hospedar os arquivos estáticos:
+
 ```bash
 npm run build
 ```
+
 Os arquivos estarão na pasta `dist/`
 
 **IMPORTANTE**: Configure as variáveis de ambiente no serviço de hospedagem!
@@ -259,18 +291,22 @@ VALUES
 ## 🐛 Troubleshooting
 
 ### Erro: "Invalid API key"
+
 - Verifique se as variáveis `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` estão corretas no `.env`
 - Reinicie o servidor de desenvolvimento após alterar o `.env`
 
 ### Erro: "Row Level Security"
+
 - Certifique-se de que executou o script `supabase-setup.sql` completo
 - Verifique se as policies foram criadas corretamente no Supabase
 
 ### Gráficos não aparecem
+
 - Verifique se há transações cadastradas no banco
 - Confira se os filtros não estão muito restritivos
 
 ### Não consigo fazer login
+
 - Verifique se o usuário foi criado via Authentication do Supabase
 - Confirme que a role foi configurada na tabela `users`
 
@@ -281,6 +317,7 @@ Este projeto foi desenvolvido para a **Seed a Bit** e está sob licença proprie
 ## 👥 Contribuindo
 
 Para contribuir com o projeto:
+
 1. Faça um fork
 2. Crie uma branch: `git checkout -b feature/nova-funcionalidade`
 3. Commit suas mudanças: `git commit -m 'Adiciona nova funcionalidade'`
@@ -288,7 +325,5 @@ Para contribuir com o projeto:
 5. Abra um Pull Request
 
 ---
-
-
 
 Desenvolvido com ❤️ para a **Seed a Bit**
